@@ -1,12 +1,12 @@
-# Sample-PLC-ModbusRTUHandler - Queue-Based Modbus RTU Framework
+# 📦 Sample-PLC-ModbusRTUHandler - Queue-Based Modbus RTU Framework
 
 Reusable TwinCAT 3 framework for decoupled, multi-device Modbus RTU communication via a shared FIFO command queue.
 
-## Overview
+## 🧠 Overview
 
 `ModbusHandler` and `ModbusDevice` form a two-layer architecture: a background task drives all serial I/O through a state-machine-based command processor, while device driver function blocks compose the handler to queue commands and receive results asynchronously. The framework uses a FIFO ring buffer to decouple multiple device drivers from a single shared serial bus, and union-based type punning for zero-overhead endian conversion between big-endian Modbus registers and little-endian TwinCAT memory.
 
-### Key Features
+### Key features
 
 - **Queue-based command dispatch**: Multiple device drivers push `ST_ModbusCommand` entries into a shared `FifoBuffer`; the handler processes them one at a time over the serial bus
 - **Asynchronous result notification**: Each command carries a `POINTER TO HRESULT`; the handler writes the result on completion so callers are never blocked
@@ -17,7 +17,7 @@ Reusable TwinCAT 3 framework for decoupled, multi-device Modbus RTU communicatio
 - **All standard Modbus functions**: Read/write coils, read/write registers, input registers, and diagnostics via `E_ModbusFunction`
 - **Template-first design**: `ModbusDevice` is explicitly a copy-and-adapt template; register layout, data types, and HMI interface are all customization points
 
-## Use Cases
+## 🎯 Use Cases
 
 ### Multi-device polling
 
@@ -37,18 +37,18 @@ Reusable TwinCAT 3 framework for decoupled, multi-device Modbus RTU communicatio
 - **Triggered writes**: Use rising-edge detection (`R_TRIG`) on HMI inputs to fire one-shot calibration or configuration writes
 - **Engineering unit conversion**: Use or extend the built-in `_ConvertModbusToReal()` / `_ConvertRealToModbus()` helpers for your data types
 
-## Function Blocks
+## 🔧 Function Blocks
 
 ### ModbusHandler - Command queue processor
 
-**Queue-based Modbus RTU master** with internal state machine. Accepts `ST_ModbusCommand` entries from any number of device drivers and dispatches them sequentially over the serial bus.
+**Queue-based Modbus RTU master implementation** with internal state machine. Accepts `ST_ModbusCommand` entries from any number of device drivers and dispatches them sequentially over the serial bus.
 
 **Features**:
 - FIFO ring buffer (`Tc3_AnyBuffer.FifoBuffer`) holds up to `MAXMODBUSBUFFER` (200) commands
 - State machine: `WAITING` → `EXECUTE` → `COOLDOWN` → `ERROR`
 - Configurable `ModbusTimeout` per command (default `T#500MS`)
 - Results written back via `POINTER TO HRESULT` — callers poll asynchronously
-- Logs error codes via `ADSLOGSTR` on transition to ERROR state
+- Logs error codes via `ADSLOGSTR` on transition to `ERROR` state
 
 **Performance**:
 - `AddToBuffer`: O(1) — single FIFO push, returns immediately
@@ -61,13 +61,13 @@ Reusable TwinCAT 3 framework for decoupled, multi-device Modbus RTU communicatio
 
 ### ModbusDevice - Device driver template
 
-**Composition-based sample device driver** built on top of `ModbusHandler`. Demonstrates the full pattern: initialization, cyclic reads, triggered writes, endian conversion, and HMI binding.
+**Composition-based sample device driver implementation** built on top of `ModbusHandler`. Demonstrates the full pattern: initialization, cyclic reads, triggered writes, endian conversion, and HMI binding.
 
 **Features**:
 - Cyclic register reads triggered by `TON` timer at configurable `UpdateTime` (default `T#1000MS`)
 - One-shot serial number read on initialization
 - Calibration write triggered via `R_TRIG` on `hmi.CmdCalibrate`
-- Endian conversion for REAL and UDINT via `ModbusReal`/`ModbusDint` unions
+- Endian conversion for `REAL` and `UDINT` via `ModbusReal`/`ModbusDint` unions
 - `ST_ModbusDevice_HMI` struct with `TcHmiSymbol.AddSymbol` attribute for automatic TcHMI symbol registration
 
 **Performance**:
@@ -77,7 +77,16 @@ Reusable TwinCAT 3 framework for decoupled, multi-device Modbus RTU communicatio
 
 **Best for**: copying as a starting point for a new Modbus RTU device driver; demonstrating the queue/result pattern to developers new to the framework.
 
-## Usage Examples
+---
+
+| | ModbusHandler | ModbusDevice | Best For |
+|---|---|---|---|
+| Role | Serial command dispatcher | Device driver template | Handler: bus layer; Device: application layer |
+| Task | BGComm (1 ms, priority 4) | PlcTask (10 ms, priority 8) | Always run the handler in a dedicated background task |
+| Instances | One per serial bus | One per slave device | All device instances share the same handler |
+| Extensible | No — use as-is | Yes — copy and adapt | Device: new Modbus slave types |
+
+## 💡 Usage Examples
 
 **Declare the shared handler in the background communication program:**
 
@@ -158,7 +167,7 @@ METHOD _Initialize : BOOL
     _readProcessValue1.ModbusFunction := E_ModbusFunction.ReadRegs;
 ```
 
-## Project Structure
+## 🗂️ Project Structure
 
 ```mermaid
 classDiagram
@@ -230,13 +239,13 @@ classDiagram
     }
     class ModbusReal {
         <<union>>
-        +w : ARRAY OF WORD
-        +r : REAL
+        +rawdata : ARRAY OF WORD
+        +value : REAL
     }
     class ModbusDint {
         <<union>>
-        +w : ARRAY OF WORD
-        +d : DINT
+        +rawdata : ARRAY OF WORD
+        +value : DINT
     }
 
     BG_Communication *-- ModbusHandler
@@ -250,7 +259,7 @@ classDiagram
     ST_ModbusCommand --> E_ModbusFunction
 ```
 
-## Installation
+## ⚙️ Installation
 
 ### Option 1: Add to an existing TwinCAT project
 
@@ -270,7 +279,7 @@ classDiagram
 4. Activate the configuration and connect to target hardware with EL6001 or EL6022
 5. Build and download — `MAIN.TcPOU` instantiates four devices (addresses 20, 30, 40, 50); device 4 is intentionally misconfigured to demonstrate error handling behavior
 
-## Design Principles
+## 🏗️ Design Principles
 
 ### SOLID principles
 
@@ -289,7 +298,7 @@ classDiagram
 - **Union-based type punning**: `ModbusReal` and `ModbusDint` overlay `WORD` arrays with `REAL`/`DINT` to convert endianness without `MEMCPY`
 - **Dual-task producer/consumer**: The 10 ms `PlcTask` produces commands; the 1 ms `BGComm` task consumes them — the FIFO is the only handoff point between tasks
 
-## Best Practices
+## ✅ Best Practices
 
 1. Always run `ModbusHandler` in a dedicated task with **higher priority** than your device logic tasks — sharing a task causes slower serial I/O to block PLC cycle execution
 2. Keep `ModbusTimeout` (default `T#500MS`) shorter than your application's watchdog or alarm scan interval so Modbus errors surface before higher-level logic times out
@@ -297,11 +306,11 @@ classDiagram
 4. Do not increase `MAXMODBUSBUFFER` beyond the number of commands that can realistically be processed per application cycle; a perpetually full queue silently drops new entries
 5. Use `_ConvertModbusToReal()` / `_ConvertRealToModbus()` as reference implementations when adding support for new data types — the `ModbusReal` union approach avoids manual pointer arithmetic
 
-## Thread Safety
+## 🔒 Thread Safety
 
 The FIFO buffer provided by `Tc3_AnyBuffer.FifoBuffer` is the **synchronization boundary** between the 10 ms `PlcTask` (producers) and the 1 ms `BGComm` task (consumer). Each `AddToBuffer()` call is an atomic push into the ring buffer; the handler pops one entry per cycle. Because TwinCAT tasks run on a single-core real-time scheduler with non-preemptive switching at task boundaries, no additional locking is required — provided `ModbusHandler()` is called exclusively from one task and `AddToBuffer()` is called exclusively from the other. Do not call `ModbusHandler()` and `AddToBuffer()` from the same task.
 
-## Error Handling
+## ⚠️ Error Handling
 
 When a command fails due to a Modbus timeout or device error, `ModbusHandler` writes `E_FAIL` to the command's `POINTER TO HRESULT`, sets its `Error` output, captures the raw error code in `ErrorId`, and logs the event via `ADSLOGSTR` before transitioning through `COOLDOWN` and resuming. Device drivers detect failure by polling their stored `HRESULT` and propagate the `Error` output accordingly.
 
@@ -319,7 +328,7 @@ IF _readProcessValue1Result = E_FAIL THEN
 END_IF
 ```
 
-## Dependencies
+## 📦 Dependencies
 
 - **`Tc2_ModbusRTU`**: Beckhoff Automation — provides `ModbusRtuMasterV2_KL6x22B`, the hardware-level Modbus RTU master function block
 - **`Tc2_Standard`**: Beckhoff Automation — standard IEC 61131-3 blocks (`TON`, `R_TRIG`)
@@ -327,7 +336,7 @@ END_IF
 - **`Tc3_Module`**: Beckhoff Automation — TwinCAT 3 module support
 - **`Tc3_AnyBuffer`**: KimRo — `FifoBuffer` ring buffer used as the command queue; third-party, must be installed separately
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome. Areas where extension is most useful:
 
@@ -336,20 +345,20 @@ Contributions are welcome. Areas where extension is most useful:
 - Support for Modbus TCP alongside RTU in the handler layer
 - Unit test fixtures using TcUnit
 
-## License
+## 📄 License
 
 [BSD Zero Clause License (0BSD)](LICENSE.md) — use, copy, and modify freely with or without attribution.
 
-## Authors
+## 👤 Authors
 
 Robin Cardinaels — Beckhoff Belgium
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
 - [Tc3_AnyBuffer by KimRo](https://github.com/Roald87/TcAnyBuffer) — FIFO ring buffer implementation used for the command queue
 - [Beckhoff TF6255 Modbus RTU documentation](./Documentation/TF6255_TC3_Modbus_RTU_EN.pdf) — hardware and library reference
 
-## Support
+## 💬 Support
 
 - Open an issue in this repository for bugs or feature requests
 - Consult the [Beckhoff Information System](https://infosys.beckhoff.com) for `Tc2_ModbusRTU` and EL6001/EL6022 hardware documentation
@@ -357,7 +366,7 @@ Robin Cardinaels — Beckhoff Belgium
 
 ---
 
-**Quick Links**
+**🔗 Quick Links**
 
 **Components** | [ModbusHandler](#modbushandler---command-queue-processor) | [ModbusDevice](#modbusdevice---device-driver-template)
 
