@@ -352,38 +352,7 @@ This project is a Beckhoff internal sample and template. Contributions that impr
 
 [BSD Zero Clause License (0BSD)](LICENSE.md) — use, copy, and modify freely with or without attribution.
 
-## 👤 Authors
-
-**Robin Cardinaels** — Beckhoff Belgium ([r.cardinaels@beckhoff.be](mailto:r.cardinaels@beckhoff.be))
-
-## 🙏 Acknowledgments
-
-- **[KimRo — Tc3_AnyBuffer](https://github.com/KimRo90/Tc3_AnyBuffer)** — FIFO ring buffer library that powers the command queue
-- **[Beckhoff Automation — TF6255 Modbus RTU documentation](Documentation/TF6255_TC3_Modbus_RTU_EN.pdf)** — reference for `ModbusRtuMasterV2_KL6x22B` function block usage
-
 ## 💬 Support
 
 - **Beckhoff Information System**: consult the [Beckhoff TwinCAT documentation](https://infosys.beckhoff.com) for TwinCAT runtime, EtherCAT, and library questions
 - **GitHub Issues**: open an issue on this repository for bugs or questions specific to this sample
-- **Internal**: contact [r.cardinaels@beckhoff.be](mailto:r.cardinaels@beckhoff.be) for Beckhoff Belgium-internal inquiries
-
-## 📝 Version History
-
-- **v1.0**: Initial release
-  - `ModbusHandler` queue-based state machine with `Tc3_AnyBuffer` FIFO
-  - `ModbusDevice` copy-and-adapt device driver template
-  - `ModbusReal` and `ModbusDint` union types for endian conversion
-  - Sample `MAIN.TcPOU` with four device instances including intentional error-handling demo
-  - EtherCAT hardware configuration for EK1100/EK1200 + EL6001/EL6022
-
----
-
-**🔗 Quick Links**
-
-**Components** | [ModbusHandler](#modbushandler---command-queue-processor) | [ModbusDevice](#modbusdevice---device-driver-template)
-
-**Getting Started** | [Installation](#installation) | [Usage Examples](#usage-examples) | [Project Structure](#project-structure)
-
-**Reference** | [Design Principles](#design-principles) | [Error Handling](#error-handling) | [Dependencies](#dependencies)
-
-**Project** | [Contributing](#contributing) | [Authors](#authors) | [License](#license) | [Version History](#version-history)
