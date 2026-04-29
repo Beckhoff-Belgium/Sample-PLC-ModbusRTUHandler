@@ -1,28 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
-      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_HMIUpdate||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
-      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_HMIUpdate||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_HandleResults||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
-      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_HandleResults||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_Initialize||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
-      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_Initialize||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
-      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -30,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -57,59 +36,8 @@
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ModbusDevice._HMIUpdate",
-              "DocumentMoniker": "D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_HMIUpdate",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_HMIUpdate",
-              "ToolTip": "_HMIUpdate [ModbusRTUHandler.PLC.ModbusDevice.HMI]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-29T09:09:15.303Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ModbusDevice._Initialize",
-              "DocumentMoniker": "D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_Initialize",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_Initialize",
-              "ToolTip": "_Initialize [ModbusRTUHandler.PLC.ModbusDevice.Initialisation]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-29T09:07:17.081Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ModbusHandler",
-              "DocumentMoniker": "D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler.TcPOU",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler.TcPOU",
-              "ToolTip": "ModbusHandler [ModbusRTUHandler.PLC]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-29T09:04:31.206Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ModbusDevice",
-              "DocumentMoniker": "D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU",
-              "ToolTip": "ModbusDevice [ModbusRTUHandler.PLC]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-29T09:04:10.255Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ModbusDevice._HandleResults",
-              "DocumentMoniker": "D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_HandleResults",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_HandleResults",
-              "ToolTip": "_HandleResults [ModbusRTUHandler.PLC.ModbusDevice.Modbus]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-29T09:03:58.966Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{94c070b9-db0b-4415-9311-bac4eef266f5}"
             }
           ]
         }

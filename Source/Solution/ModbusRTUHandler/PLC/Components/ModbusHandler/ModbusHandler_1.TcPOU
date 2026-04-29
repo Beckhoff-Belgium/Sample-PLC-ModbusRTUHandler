@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
-  <POU Name="ModbusHandler" Id="{bda5012f-95a7-4f5c-9293-cba878afb727}" SpecialFunc="None">
+  <POU Name="ModbusHandler_1" Id="{4d47e49d-cc40-4f39-ad96-5a572766d2ca}" SpecialFunc="None">
     <Declaration><![CDATA[// Queue-based Modbus RTU command handler with ringbuffer
-FUNCTION_BLOCK ModbusHandler
+FUNCTION_BLOCK ModbusHandler_1
 VAR_INPUT
 	ModbusTimeout						: TIME := T#500MS;	// Timeout per command
 END_VAR
@@ -13,14 +13,13 @@ VAR_OUTPUT
 END_VAR
 VAR
 	_Modbus								: Tc2_ModbusRTU.ModbusRtuMasterV2_KL6x22B;
-	test: Tc3_AnyBuffer.ST_BufferMetadata;
 END_VAR
 VAR
 	_commandToProcess					: ST_ModbusCommand;
 	_bufferHandler						: Tc3_AnyBuffer.FifoBuffer(_buffer,TRUE,FALSE);
 	_buffer								: Tc3_AnyBuffer.AnyBuffer(_arBuffer,0,param.MAXMODBUSBUFFER,FALSE);
 	_arBuffer							: ARRAY[0..MAXMODBUSBUFFER] OF ST_ModbusCommand;
-	//_currentState						: (WAITING, EXECUTE, COOLDOWN, ERROR);
+	_currentState						: (WAITING, EXECUTE, COOLDOWN, ERROR);
 END_VAR
 VAR CONSTANT
 	ERROR_RESULT						: hresult := e_fail;
@@ -30,17 +29,23 @@ END_VAR]]></Declaration>
       <ST><![CDATA[(*----------------------------------------------------------------------
 Wait for a new bufferd command to process
 -----------------------------------------------------------------------*)
-	// Check for queued commands	
-	IF NOT _bufferHandler.isEmpty 	AND NOT Busy	THEN
-		Error := FALSE;
-		ErrorId	:= 0;
-		Busy									:= _bufferHandler.Pop(_commandToProcess);;
-	END_IF
+
+CASE _currentState OF
+	WAITING:
+		Busy								:= FALSE;
+		// Check for queued commands
+		IF NOT _bufferHandler.isEmpty 		THEN
+			Error := FALSE;
+			ErrorId	:= 0;
+			Busy									:= TRUE;
+			_bufferHandler.Pop(_commandToProcess);
+			_currentState	:= EXECUTE;
+		END_IF
 		
 	(*----------------------------------------------------------------------
 	Process command
 	-----------------------------------------------------------------------*)
-	IF Busy AND _commandToProcess.Result <> 0 THEN
+	EXECUTE:
 			// Copy parameters to modbus FB
 			_Modbus.UnitID    		:= _commandToProcess.UnitID;
 			_Modbus.Quantity  		:= _commandToProcess.Quantity;
@@ -77,24 +82,29 @@ Wait for a new bufferd command to process
 			// Wait for completion
 			IF NOT _Modbus.BUSY THEN
 				_Modbus(execute := FALSE);
-				Busy									:= FALSE;
 				// Write result to caller's pointer
 				IF NOT _Modbus.Error THEN
-					MEMCPY(destAddr:= _commandToProcess.Result,srcAddr:=ADR(OK_RESULT),n:=SIZEOF(OK_RESULT));
+					_currentState := COOLDOWN;
+					MEMCPY(destAddr:= _commandToProcess.Result,srcAddr:=ADR(OK_RESULT),n:=SIZEOF(ERROR_RESULT));
 				ELSE
-					MEMCPY(destAddr:= _commandToProcess.Result,srcAddr:=ADR(ERROR_RESULT),n:=SIZEOF(ERROR_RESULT));
-					ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_ERROR, msgFmtStr := 'modbus command Failed', strArg :='');
-					Error := TRUE;
-					ErrorId	:= _Modbus.ErrorId;
+					 _currentState := ERROR;
 				END_IF
 			END_IF
-		ELSIF busy AND _commandToProcess.Result <> 0 THEN
-			ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_ERROR, msgFmtStr := 'bad command receieved', strArg :='');
-			busy		:= FALSE;
-		END_IF
+
+
+	COOLDOWN:
+			_currentState								:= WAITING;
+
+	ERROR:
+		MEMCPY(destAddr:= _commandToProcess.Result,srcAddr:=ADR(ERROR_RESULT),n:=SIZEOF(ERROR_RESULT));
+		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_ERROR, msgFmtStr := 'modbus command Failed', strArg :='');
+		Error := TRUE;
+		ErrorId	:= _Modbus.ErrorId;
+		_currentState									:= COOLDOWN;
+END_CASE
 ]]></ST>
     </Implementation>
-    <Method Name="AddToBuffer" Id="{c0e91496-d610-4066-a473-3ba4dd43fa3e}">
+    <Method Name="AddToBuffer" Id="{f8b33349-2a41-41cd-8102-47cb1c54c620}">
       <Declaration><![CDATA[METHOD AddToBuffer : Hresult
 VAR_INPUT
 	command			: ST_ModbusCommand;

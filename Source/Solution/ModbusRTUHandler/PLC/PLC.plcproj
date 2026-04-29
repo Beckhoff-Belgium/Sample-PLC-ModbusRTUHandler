@@ -45,6 +45,9 @@
     <Compile Include="Components\ModbusHandler\ModbusHandler.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Components\ModbusHandler\ModbusHandler_1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
