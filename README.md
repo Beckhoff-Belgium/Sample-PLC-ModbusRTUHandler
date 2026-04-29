@@ -160,42 +160,94 @@ METHOD _Initialize : BOOL
 
 ## Project Structure
 
-```
-Sample-PLC-ModbusRTUHandler/
-├── LICENSE.md
-├── README.md
-├── THIRD-PARTY-LICENSES.md
-├── Documentation/
-│   └── TF6255_TC3_Modbus_RTU_EN.pdf
-└── Source/Solution/
-    └── ModbusRTUHandler/
-        ├── ModbusRTUHandler.tsproj
-        ├── _Config/
-        │   ├── IO/Device 1 (EtherCAT)/
-        │   │   ├── Term 1 (EK1100)/
-        │   │   │   └── Term 2 (EL6001).xti
-        │   │   └── Term 1 (EK1200)/
-        │   │       └── Term 2 (EL6022).xti
-        │   └── PLC/
-        └── PLC/
-            ├── BGComm.TcTTO               (1 ms, priority 4)
-            ├── PlcTask.TcTTO              (10 ms, priority 8)
-            ├── Program/
-            │   ├── MAIN.TcPOU
-            │   ├── BG_Communication.TcPOU
-            │   └── Param.TcGVL
-            └── Components/
-                ├── ModbusHandler/
-                │   ├── ModbusHandler.TcPOU
-                │   └── datatypes/
-                │       ├── E_ModbusFunction.TcDUT
-                │       └── ST_ModbusCommand.TcDUT
-                └── ModbusDeviceSample/
-                    ├── ModbusDevice.TcPOU
-                    ├── ST_ModbusDeviceParam.TcDUT
-                    ├── ST_ModbusDevice_HMI.TcDUT
-                    ├── ModbusReal.TcDUT
-                    └── ModbusDint.TcDUT
+```mermaid
+classDiagram
+    class BG_Communication {
+        +modbushandler : ModbusHandler
+    }
+    class MAIN {
+        +ModbusDevice1 : ModbusDevice
+        +ModbusDevice2 : ModbusDevice
+        +ModbusDevice3 : ModbusDevice
+        +ModbusDevice4 : ModbusDevice
+    }
+    class ModbusHandler {
+        +ModbusTimeout : TIME
+        +Busy : BOOL
+        +Error : BOOL
+        +ErrorId : UDINT
+        +AddToBuffer(command : ST_ModbusCommand)
+    }
+    class ModbusDevice {
+        +Param : ST_ModbusDeviceParam
+        +ModbusHandler : REF TO ModbusHandler
+        +Error : BOOL
+        +PVProcessValue1 : REAL
+        +PVProcessValue2 : REAL
+        -_Initialize()
+        -_HandleResults()
+        -_HMIUpdate()
+        -_ConvertModbusToReal()
+        -_ConvertRealToModbus()
+    }
+    class ST_ModbusCommand {
+        <<struct>>
+        +ModbusFunction : E_ModbusFunction
+        +UnitID : BYTE
+        +MBAddr : WORD
+        +Quantity : WORD
+        +pMemoryAddr : POINTER TO BYTE
+        +cbLength : UINT
+        +Result : POINTER TO HRESULT
+    }
+    class E_ModbusFunction {
+        <<enumeration>>
+        ReadCoils
+        ReadInputStatus
+        ReadRegs
+        ReadInputRegs
+        WriteSingleCoil
+        WriteSingleRegister
+        WriteMultipleCoils
+        WriteRegs
+        Diagnostics
+    }
+    class ST_ModbusDeviceParam {
+        <<struct>>
+        +MBSAdress : BYTE
+        +UpdateTime : TIME
+    }
+    class ST_ModbusDevice_HMI {
+        <<struct>>
+        +SerialNumber : UDINT
+        +ActualProcessValue1 : REAL
+        +ActualProcessValue2 : REAL
+        +HasError : BOOL
+        +Initialized : BOOL
+        +CalibrationValue : REAL
+        +CmdReinitialize : BOOL
+        +CmdCalibrate : BOOL
+    }
+    class ModbusReal {
+        <<union>>
+        +w : ARRAY OF WORD
+        +r : REAL
+    }
+    class ModbusDint {
+        <<union>>
+        +w : ARRAY OF WORD
+        +d : DINT
+    }
+
+    BG_Communication *-- ModbusHandler
+    MAIN *-- ModbusDevice
+    ModbusDevice o-- ModbusHandler
+    ModbusDevice *-- ST_ModbusDeviceParam
+    ModbusDevice *-- ST_ModbusDevice_HMI
+    ModbusDevice --> ModbusReal
+    ModbusDevice --> ModbusDint
+    ModbusHandler --> ST_ModbusCommand
+    ST_ModbusCommand --> E_ModbusFunction
 ```
 
 ## Installation
@@ -307,7 +359,7 @@ Robin Cardinaels — Beckhoff Belgium
 
 **Quick Links**
 
-**Components** | [ModbusHandler](#modbustandler---command-queue-processor) | [ModbusDevice](#modbusdevice---device-driver-template)
+**Components** | [ModbusHandler](#modbushandler---command-queue-processor) | [ModbusDevice](#modbusdevice---device-driver-template)
 
 **Getting Started** | [Installation](#installation) | [Usage Examples](#usage-examples) | [Project Structure](#project-structure)
 
