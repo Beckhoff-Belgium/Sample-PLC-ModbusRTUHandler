@@ -41,7 +41,7 @@ CASE _currentState OF
 			_bufferHandler.Pop(_commandToProcess);
 			_currentState	:= EXECUTE;
 		END_IF
-
+		
 	(*----------------------------------------------------------------------
 	Process command
 	-----------------------------------------------------------------------*)

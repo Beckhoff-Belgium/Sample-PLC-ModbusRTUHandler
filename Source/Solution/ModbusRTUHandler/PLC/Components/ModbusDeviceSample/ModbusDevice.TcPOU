@@ -5,6 +5,7 @@
 {attribute 'reflection'}
 FUNCTION_BLOCK ModbusDevice
 VAR_INPUT
+	reset						: bool;
 	Param						: ST_ModbusDeviceParam;
 	ModbusHandler				: REFERENCE TO ModbusHandler;
 END_VAR
@@ -73,6 +74,7 @@ _HMIUpdate();
 
 // Cyclically read ProcessValue1 and ProcessValue2
 _modbusUpdateTimer(in:= NOT _modbusUpdateTimer.q, pt := _updateTime);
+
 IF _modbusUpdateTimer.Q AND NOT Error THEN
 	ModbusHandler.AddToBuffer(_readProcessValue1);
 	ModbusHandler.AddToBuffer(_readProcessValue2);
@@ -210,7 +212,7 @@ hmi.CalibrationSucceded	:= _calibrationSucceeded;
 _updateTime				:= Param.UpdateTime;
 
 // Trigger reinitialization on rising edge
-triggerReinit(clk		:= hmi.CmdReinitialize);
+triggerReinit(clk		:= hmi.CmdReinitialize or Reset);
 _reinitialize			:= triggerReinit.Q;
 
 // Trigger calibration on rising edge
