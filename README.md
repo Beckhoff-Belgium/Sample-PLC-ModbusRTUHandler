@@ -6,12 +6,12 @@ Reusable TwinCAT 3 framework for decoupled, multi-device Modbus RTU communicatio
 
 `ModbusHandler` and `ModbusDevice` form a two-layer architecture: a background task drives all serial I/O through a state-machine-based command processor, while device driver function blocks compose the handler to queue commands and receive results asynchronously. The framework uses a FIFO ring buffer to decouple multiple device drivers from a single shared serial bus, and union-based type punning for zero-overhead endian conversion between big-endian Modbus registers and little-endian TwinCAT memory.
 
-### Key features
+### Key Features
 
 - **Queue-based command dispatch**: Multiple device drivers push `ST_ModbusCommand` entries into a shared `FifoBuffer`; the handler processes them one at a time over the serial bus
 - **Asynchronous result notification**: Each command carries a `POINTER TO HRESULT`; the handler writes the result on completion so callers are never blocked
 - **Dual-task isolation**: `ModbusHandler` runs in a dedicated 1 ms `BGComm` task; device logic runs at 10 ms in `PlcTask`, preventing serial I/O from blocking control cycles
-- **Endian conversion built-in**: `ModbusReal` and `ModbusDint` unions provide zero-copy big-endian ↔ little-endian conversion
+- **Endian conversion built-in**: `ModbusReal` and `ModbusDint` unions provide zero-copy big-endian ↔ little-endian conversion for `REAL`, `DINT`, and `UDINT` types
 - **HMI-ready device template**: `ST_ModbusDevice_HMI` with `TcHmiSymbol.AddSymbol` for automatic TcHMI symbol binding
 - **Configurable timeout and queue depth**: `ModbusTimeout` input and `Param.MAXMODBUSBUFFER` constant control runtime behavior
 - **All standard Modbus functions**: Read/write coils, read/write registers, input registers, and diagnostics via `E_ModbusFunction`
@@ -27,7 +27,7 @@ Reusable TwinCAT 3 framework for decoupled, multi-device Modbus RTU communicatio
 
 ### HMI integration
 
-- **Live process values**: Expose `PVProcessValue1`, `PVProcessValue2`, and `SerialNumber` to TcHMI via the `ST_ModbusDevice_HMI` struct
+- **Live process values**: Expose `ActualProcessValue1`, `ActualProcessValue2`, and `SerialNumber` to TcHMI via the `ST_ModbusDevice_HMI` struct
 - **Operator commands**: `CmdReinitialize` and `CmdCalibrate` booleans let operators trigger actions from HMI without PLC code changes
 - **Status feedback**: `HasError`, `Initialized`, and `CalibrationSucceded` provide real-time device state to HMI panels
 
@@ -197,7 +197,9 @@ classDiagram
         -_HandleResults()
         -_HMIUpdate()
         -_ConvertModbusToReal()
+        -_ConvertModbusToUDint()
         -_ConvertRealToModbus()
+        -_ConvertUdintToModbus()
     }
     class ST_ModbusCommand {
         <<struct>>
@@ -231,9 +233,10 @@ classDiagram
         +SerialNumber : UDINT
         +ActualProcessValue1 : REAL
         +ActualProcessValue2 : REAL
+        +CalibrationValue : REAL
         +HasError : BOOL
         +Initialized : BOOL
-        +CalibrationValue : REAL
+        +CalibrationSucceded : BOOL
         +CmdReinitialize : BOOL
         +CmdCalibrate : BOOL
     }
@@ -277,7 +280,7 @@ classDiagram
 2. Open `Source/Solution/ModbusRTUHandler.sln` in TwinCAT XAE (minimum version 3.1.4026.18)
 3. Install `Tc3_AnyBuffer` by KimRo and resolve all library references
 4. Activate the configuration and connect to target hardware with EL6001 or EL6022
-5. Build and download — `MAIN.TcPOU` instantiates four devices (addresses 20, 30, 40, 50); device 4 is intentionally misconfigured to demonstrate error handling behavior
+5. Build and download — `MAIN.TcPOU` instantiates four devices (addresses 20, 30, 40, 50); device 4 is intentionally misconfigured (invalid handler reference) to demonstrate error handling behavior
 
 ## 🏗️ Design Principles
 
@@ -338,12 +341,12 @@ END_IF
 
 ## 🤝 Contributing
 
-Contributions are welcome. Areas where extension is most useful:
+This project is a Beckhoff internal sample and template. Contributions that improve the clarity of the template pattern, fix correctness issues, or extend hardware compatibility are welcome.
 
-- Additional device driver examples for common Modbus RTU sensors and actuators
-- Extended endian conversion helpers for additional 32-bit and 64-bit types
-- Support for Modbus TCP alongside RTU in the handler layer
-- Unit test fixtures using TcUnit
+- **New hardware support**: Tested configurations for additional serial terminals (e.g., EL6002, KL6001)
+- **Additional data type converters**: New union types for `LREAL`, `INT`, `LINT`, following the `ModbusReal`/`ModbusDint` pattern
+- **Documentation improvements**: Corrections or additions to inline code comments and this README
+- **Error handling enhancements**: Additional error classification in `ModbusHandler` without breaking the existing state machine contract
 
 ## 📄 License
 
@@ -351,18 +354,27 @@ Contributions are welcome. Areas where extension is most useful:
 
 ## 👤 Authors
 
-Robin Cardinaels — Beckhoff Belgium
+**Robin Cardinaels** — Beckhoff Belgium ([r.cardinaels@beckhoff.be](mailto:r.cardinaels@beckhoff.be))
 
 ## 🙏 Acknowledgments
 
-- [Tc3_AnyBuffer by KimRo](https://github.com/Roald87/TcAnyBuffer) — FIFO ring buffer implementation used for the command queue
-- [Beckhoff TF6255 Modbus RTU documentation](./Documentation/TF6255_TC3_Modbus_RTU_EN.pdf) — hardware and library reference
+- **[KimRo — Tc3_AnyBuffer](https://github.com/KimRo90/Tc3_AnyBuffer)** — FIFO ring buffer library that powers the command queue
+- **[Beckhoff Automation — TF6255 Modbus RTU documentation](Documentation/TF6255_TC3_Modbus_RTU_EN.pdf)** — reference for `ModbusRtuMasterV2_KL6x22B` function block usage
 
 ## 💬 Support
 
-- Open an issue in this repository for bugs or feature requests
-- Consult the [Beckhoff Information System](https://infosys.beckhoff.com) for `Tc2_ModbusRTU` and EL6001/EL6022 hardware documentation
-- For `Tc3_AnyBuffer` questions, refer to the KimRo repository
+- **Beckhoff Information System**: consult the [Beckhoff TwinCAT documentation](https://infosys.beckhoff.com) for TwinCAT runtime, EtherCAT, and library questions
+- **GitHub Issues**: open an issue on this repository for bugs or questions specific to this sample
+- **Internal**: contact [r.cardinaels@beckhoff.be](mailto:r.cardinaels@beckhoff.be) for Beckhoff Belgium-internal inquiries
+
+## 📝 Version History
+
+- **v1.0**: Initial release
+  - `ModbusHandler` queue-based state machine with `Tc3_AnyBuffer` FIFO
+  - `ModbusDevice` copy-and-adapt device driver template
+  - `ModbusReal` and `ModbusDint` union types for endian conversion
+  - Sample `MAIN.TcPOU` with four device instances including intentional error-handling demo
+  - EtherCAT hardware configuration for EK1100/EK1200 + EL6001/EL6022
 
 ---
 
@@ -373,3 +385,5 @@ Robin Cardinaels — Beckhoff Belgium
 **Getting Started** | [Installation](#installation) | [Usage Examples](#usage-examples) | [Project Structure](#project-structure)
 
 **Reference** | [Design Principles](#design-principles) | [Error Handling](#error-handling) | [Dependencies](#dependencies)
+
+**Project** | [Contributing](#contributing) | [Authors](#authors) | [License](#license) | [Version History](#version-history)
