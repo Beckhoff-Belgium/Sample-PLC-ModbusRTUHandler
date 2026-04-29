@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
+  <POU Name="BG_Communication" Id="{3ea87593-e70b-417a-8b18-4b5cf025a577}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM BG_Communication
+VAR
+	modbushandler			: ModbusHandler;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+modbushandler();
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

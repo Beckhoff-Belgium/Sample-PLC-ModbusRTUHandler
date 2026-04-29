@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
+  <DUT Name="ModbusDint" Id="{c679fe4b-1b45-47ee-b4f0-7a2b80938d6f}">
+    <Declaration><![CDATA[TYPE ModbusDint :
+UNION
+	rawdata		: ARRAY[0..1] OF WORD;
+	value	: DINT;
+END_UNION
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

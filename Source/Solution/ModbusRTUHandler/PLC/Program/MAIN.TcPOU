@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
+  <POU Name="MAIN" Id="{1458422a-c0f4-435b-aec5-109302e4f409}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	
+	ModbusDevice1		: ModbusDevice := (Param := (MBSAdress := 20));
+	ModbusDevice2		: ModbusDevice := (Param := (MBSAdress := 30));
+	ModbusDevice3		: ModbusDevice := (Param := (MBSAdress := 40));
+	ModbusDevice4		: ModbusDevice := (Param := (MBSAdress := 50));
+
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+ModbusDevice1(ModbusHandler := BG_Communication.modbushandler);
+ModbusDevice2(ModbusHandler := BG_Communication.modbushandler);
+ModbusDevice3(ModbusHandler := BG_Communication.modbushandler);
+ModbusDevice4(ModbusHandler :=  0); // this will give an error]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
+  <DUT Name="ModbusReal" Id="{593612c3-a13d-4bbd-a6bb-d8e9bb5c86f3}">
+    <Declaration><![CDATA[TYPE ModbusReal :
+UNION
+	rawdata		: ARRAY[0..1] OF WORD;
+	value		: REAL;
+END_UNION
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

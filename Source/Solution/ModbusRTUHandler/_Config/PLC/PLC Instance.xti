@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.22" ClassName="CTComPlcObjDef">
+	<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" XtvPath="PLC\PLC Instance.xtv" TmcPath="PLC\PLC.tmc">
+		<Name>__FILENAME__</Name>
+		<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+		<Contexts>
+			<Context>
+				<Id>0</Id>
+				<Name>BGComm</Name>
+				<ManualConfig>
+					<OTCID>#x02010040</OTCID>
+				</ManualConfig>
+				<Priority>4</Priority>
+				<CycleTime>1000000</CycleTime>
+			</Context>
+			<Context>
+				<Id>1</Id>
+				<Name>PlcTask</Name>
+				<ManualConfig>
+					<OTCID>#x02010030</OTCID>
+				</ManualConfig>
+				<Priority>8</Priority>
+				<CycleTime>10000000</CycleTime>
+			</Context>
+		</Contexts>
+		<TaskPouOids>
+			<TaskPouOid Prio="4" OTCID="#x08502001"/>
+			<TaskPouOid Prio="8" OTCID="#x08502002"/>
+		</TaskPouOids>
+	</Instance>
+	<Mappings>
+		<OwnerA>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL6022)">
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 0" Size="8" OffsA="16"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 1" Size="8" OffsA="24"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 10" Size="8" OffsA="96"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 11" Size="8" OffsA="104"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 12" Size="8" OffsA="112"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 13" Size="8" OffsA="120"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 14" Size="8" OffsA="128"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 15" Size="8" OffsA="136"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 16" Size="8" OffsA="144"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 17" Size="8" OffsA="152"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 18" Size="8" OffsA="160"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 19" Size="8" OffsA="168"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 2" Size="8" OffsA="32"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 20" Size="8" OffsA="176"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 21" Size="8" OffsA="184"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 3" Size="8" OffsA="40"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 4" Size="8" OffsA="48"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 5" Size="8" OffsA="56"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 6" Size="8" OffsA="64"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 7" Size="8" OffsA="72"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 8" Size="8" OffsA="80"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Data In 9" Size="8" OffsA="88"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.InData" VarB="COM Inputs Channel 1^Status" Size="16"/>
+				<Link VarA="BGComm Inputs^BG_Communication.modbushandler._Modbus.WcState" VarB="WcState^WcState" Size="1"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Ctrl" Size="16"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 0" Size="8" OffsA="16"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 1" Size="8" OffsA="24"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 10" Size="8" OffsA="96"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 11" Size="8" OffsA="104"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 12" Size="8" OffsA="112"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 13" Size="8" OffsA="120"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 14" Size="8" OffsA="128"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 15" Size="8" OffsA="136"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 16" Size="8" OffsA="144"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 17" Size="8" OffsA="152"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 18" Size="8" OffsA="160"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 19" Size="8" OffsA="168"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 2" Size="8" OffsA="32"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 20" Size="8" OffsA="176"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 21" Size="8" OffsA="184"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 3" Size="8" OffsA="40"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 4" Size="8" OffsA="48"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 5" Size="8" OffsA="56"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 6" Size="8" OffsA="64"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 7" Size="8" OffsA="72"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 8" Size="8" OffsA="80"/>
+				<Link VarA="BGComm Outputs^BG_Communication.modbushandler._Modbus.OutData" VarB="COM Outputs Channel 1^Data Out 9" Size="8" OffsA="88"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
+</TcSmItem>

@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
+  <POU Name="ModbusHandler" Id="{bda5012f-95a7-4f5c-9293-cba878afb727}" SpecialFunc="None">
+    <Declaration><![CDATA[// Queue-based Modbus RTU command handler with ringbuffer
+FUNCTION_BLOCK ModbusHandler
+VAR_INPUT
+	ModbusTimeout						: TIME := T#500MS;	// Timeout per command
+END_VAR
+VAR_OUTPUT
+	Busy								: BOOL;
+	Error								: BOOL;
+	ErrorId								: UDINT;
+END_VAR
+VAR
+	_Modbus								: Tc2_ModbusRTU.ModbusRtuMasterV2_KL6x22B;
+END_VAR
+VAR
+	_commandToProcess					: ST_ModbusCommand;
+	_bufferHandler						: Tc3_AnyBuffer.FifoBuffer(_buffer,TRUE,FALSE);
+	_buffer								: Tc3_AnyBuffer.AnyBuffer(_arBuffer,0,param.MAXMODBUSBUFFER,FALSE);
+	_arBuffer							: ARRAY[0..MAXMODBUSBUFFER] OF ST_ModbusCommand;
+	_currentState						: (WAITING, EXECUTE, COOLDOWN, ERROR);
+END_VAR
+VAR CONSTANT
+	ERROR_RESULT						: hresult := e_fail;
+	OK_RESULT							: hresult := s_ok;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*----------------------------------------------------------------------
+Wait for a new bufferd command to process
+-----------------------------------------------------------------------*)
+
+CASE _currentState OF
+	WAITING:
+		Busy								:= FALSE;
+		// Check for queued commands
+		IF NOT _bufferHandler.isEmpty 		THEN
+			Error := FALSE;
+			ErrorId	:= 0;
+			Busy									:= TRUE;
+			_bufferHandler.Pop(_commandToProcess);
+			_currentState	:= EXECUTE;
+		END_IF
+
+	(*----------------------------------------------------------------------
+	Process command
+	-----------------------------------------------------------------------*)
+	EXECUTE:
+			// Copy parameters to modbus FB
+			_Modbus.UnitID    		:= _commandToProcess.UnitID;
+			_Modbus.Quantity  		:= _commandToProcess.Quantity;
+			_Modbus.MBAddr    		:= _commandToProcess.MBAddr;
+			_Modbus.cbLength		:= _commandToProcess.cbLength;
+			_Modbus.Timeout			:= ModbusTimeout;
+			_Modbus.pMemoryAddr 	:= _commandToProcess.pMemoryAddr;
+
+		CASE _commandToProcess.ModbusFunction OF
+			E_ModbusFunction.ReadCoils:
+				_Modbus.readcoils(	execute := TRUE,
+									);
+			E_ModbusFunction.ReadInputStatus:
+				_Modbus.ReadInputStatus(execute := TRUE,
+									);
+			E_ModbusFunction.ReadRegs	:
+				_Modbus.ReadRegs(execute := TRUE,
+									);
+			E_ModbusFunction.ReadInputRegs :
+				_Modbus.ReadInputRegs(execute := TRUE,
+									);
+			E_ModbusFunction.WriteSingleCoil:
+				_Modbus.WriteSingleCoil(execute := TRUE);
+			E_ModbusFunction.WriteSingleRegister:
+				_Modbus.WriteSingleRegister(execute := TRUE);
+			E_ModbusFunction.WriteMultipleCoils	:
+				_Modbus.WriteMultipleCoils(execute := TRUE);
+			E_ModbusFunction.WriteRegs		:
+				_Modbus.WriteRegs(execute := TRUE);
+			E_ModbusFunction.Diagnostics		:
+				_Modbus.Diagnostics(execute := TRUE);
+
+		END_CASE
+			// Wait for completion
+			IF NOT _Modbus.BUSY THEN
+				_Modbus(execute := FALSE);
+				// Write result to caller's pointer
+				IF NOT _Modbus.Error THEN
+					_currentState := COOLDOWN;
+					MEMCPY(destAddr:= _commandToProcess.Result,srcAddr:=ADR(OK_RESULT),n:=SIZEOF(ERROR_RESULT));
+				ELSE
+					 _currentState := ERROR;
+				END_IF
+			END_IF
+
+
+	COOLDOWN:
+			_currentState								:= WAITING;
+
+	ERROR:
+		MEMCPY(destAddr:= _commandToProcess.Result,srcAddr:=ADR(ERROR_RESULT),n:=SIZEOF(ERROR_RESULT));
+		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_ERROR, msgFmtStr := 'modbus command Failed', strArg :='');
+		Error := TRUE;
+		ErrorId	:= _Modbus.ErrorId;
+		_currentState									:= COOLDOWN;
+END_CASE
+]]></ST>
+    </Implementation>
+    <Method Name="AddToBuffer" Id="{c0e91496-d610-4066-a473-3ba4dd43fa3e}">
+      <Declaration><![CDATA[METHOD AddToBuffer : Hresult
+VAR_INPUT
+	command			: ST_ModbusCommand;
+END_VAR
+VAR CONSTANT
+	PENDING_RESULT		: hresult := S_Pending;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Set status to pending and add to ringbuffer
+MEMCPY(destAddr:= command.Result,srcAddr:=ADR(PENDING_RESULT),n:=SIZEOF(PENDING_RESULT));
+_bufferHandler.Push(command);
+AddToBuffer := s_ok;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

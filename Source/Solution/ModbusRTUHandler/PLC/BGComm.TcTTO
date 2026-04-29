@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
+  <Task Name="BGComm" Id="{691e1860-2951-46b5-8d93-1f11c1beb528}">
+    <!--CycleTime in micro seconds.-->
+    <CycleTime>1000</CycleTime>
+    <Priority>4</Priority>
+    <PouCall>
+      <Name>BG_Communication</Name>
+    </PouCall>
+    <TaskFBGuid>{206f3061-34cd-484d-9c5c-3231c5f60be4}</TaskFBGuid>
+    <Fb_init>{3a83dffb-7333-487f-ab1f-3b1f8563ad9d}</Fb_init>
+    <Fb_exit>{c9dd69a1-bf5f-40be-8743-cdbc215b97cf}</Fb_exit>
+    <CycleUpdate>{63db316b-274f-4917-a41d-a196a59d7d55}</CycleUpdate>
+    <PostCycleUpdate>{7484bc50-4399-492e-88e5-e636e1ad10c0}</PostCycleUpdate>
+  </Task>
+</TcPlcObject>

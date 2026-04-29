@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
+  <DUT Name="ST_ModbusDeviceParam" Id="{eea7bccf-a1f2-4c59-b0fd-5dd76c92d4b9}">
+    <Declaration><![CDATA[TYPE ST_ModbusDeviceParam :
+STRUCT
+	MBSAdress			: BYTE	:= 30;
+	UpdateTime			: TIME	:= T#1000MS;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

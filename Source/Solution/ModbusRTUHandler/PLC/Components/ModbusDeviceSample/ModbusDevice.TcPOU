@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
+  <POU Name="ModbusDevice" Id="{3bc8374f-71a6-45ad-b14b-2c800aa9c9b7}" SpecialFunc="None">
+    <Declaration><![CDATA[// Sample modbus device via Modbus RTU
+{attribute 'reflection'}
+FUNCTION_BLOCK ModbusDevice
+VAR_INPUT
+	Param						: ST_ModbusDeviceParam;
+	ModbusHandler				: REFERENCE TO ModbusHandler;
+END_VAR
+VAR_OUTPUT
+	Error						: BOOL;
+	PVProcessValue1				: REAL;
+	PVProcessValue2				: REAL;
+END_VAR
+VAR
+
+    {attribute 'instance-path'}
+    {attribute 'noinit'}
+    _componentPath				: STRING;
+	hmi							: ST_ModbusDevice_HMI;
+
+	_reinitialize				: BOOL;
+	_updateTime					: TIME;
+	_modbusUpdateTimer			: TON;
+	_initialised				: BOOL;
+	_calibrate					: BOOL;
+	_calibrationSucceeded		: BOOL;
+	_initialisationSucceeded	: BOOL;
+END_VAR
+VAR
+	_rawValueSerialNumber		: ARRAY[0..1] OF WORD;
+	_serialNumber				: UDINT;
+	_rawValueProcessValue1		: ARRAY[0..1] OF WORD;
+	_processValue1				: REAL;
+	_rawValueProcessValue2	 	: ARRAY[0..1] OF WORD;
+	_processValue2				: REAL;
+	_rawValueCalibration	 	: ARRAY[0..1] OF WORD;
+	_calibrationValue			: REAL;
+END_VAR
+// modbuscommands
+VAR
+	_readSerialNumber			: ST_ModbusCommand := (ModbusFunction := E_ModbusFunction.ReadRegs, Quantity := 2, MBAddr := 2);
+	_readSerialNumberResult		: hresult := s_pending;
+	_readProcessValue1			: ST_ModbusCommand := (ModbusFunction := E_ModbusFunction.ReadRegs, Quantity := 2, MBAddr := 4);
+	_readProcessValue1Result	: hresult := s_pending;
+	_readProcessValue2			: ST_ModbusCommand := (ModbusFunction := E_ModbusFunction.ReadRegs, Quantity := 2, MBAddr := 12);
+	_readProcessValue2Result	: hresult := s_pending;
+	_writeCalibration			: ST_ModbusCommand := (ModbusFunction := E_ModbusFunction.WriteRegs, Quantity := 2, MBAddr := 12);
+	_writeCalibrationResult		: hresult := s_pending;
+
+END_VAR
+VAR_STAT
+    {attribute 'init_on_onlchange'}
+    _setAdsError				 : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT __ISVALIDREF(ModbusHandler) THEN
+	IF NOT _setAdsError THEN
+		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_ERROR, msgFmtStr := 'modbushandler not configured, device will not run: %s', strArg :=_componentPath);
+		_setAdsError := TRUE;
+	END_IF
+	RETURN;
+END_IF
+
+// Initialize modbus commands on first run
+IF NOT _initialised OR _reinitialize THEN
+		_initialised := _Initialize();
+END_IF;
+
+_HMIUpdate();
+
+// Cyclically read ProcessValue1 and ProcessValue2
+_modbusUpdateTimer(in:= NOT _modbusUpdateTimer.q, pt := _updateTime);
+IF _modbusUpdateTimer.Q AND NOT Error THEN
+	ModbusHandler.AddToBuffer(_readProcessValue1);
+	ModbusHandler.AddToBuffer(_readProcessValue2);
+END_IF
+
+// Convert Modbus words to engineering units
+_serialNumber				:= _ConvertModbusToUDint(_rawValueSerialNumber);
+_processValue1				:= _ConvertModbusToReal(_rawValueProcessValue1);
+_processValue2				:= _ConvertModbusToReal(_rawValueProcessValue2);
+_rawValueCalibration		:= _ConvertRealToModbus(_calibrationValue);
+
+// Trigger calibration on rising edge
+IF _calibrate THEN
+	ModbusHandler.AddToBuffer(_writeCalibration);
+END_IF
+
+_HandleResults();
+
+// Output process values
+PVProcessValue1	:= _processValue1;
+PVProcessValue2	:= _processValue2;
+
+
+]]></ST>
+    </Implementation>
+    <Folder Name="Conversion" Id="{38767e73-2ce7-4213-b6f2-d700261d0c0e}" />
+    <Folder Name="HMI" Id="{aaed12c6-3953-4f66-9e1a-b6a162d65040}" />
+    <Folder Name="Initialisation" Id="{7f0e9935-f97d-4b05-8bc7-eb2d611ecc11}" />
+    <Folder Name="Modbus" Id="{bdd31a01-0ac9-430b-8933-89d40cc23cbf}" />
+    <Method Name="_ConvertModbusToReal" Id="{1c157e7d-2f71-42e6-a7be-6e9ee8adc99c}" FolderPath="Conversion\">
+      <Declaration><![CDATA[METHOD PRIVATE _ConvertModbusToReal : REAL
+VAR_INPUT
+	rawValue		: ARRAY[0..1] OF WORD;
+END_VAR
+VAR
+	ModbusReal					: ModbusReal;
+END_VAR
+	]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Swap word order (big-endian to little-endian)
+ModbusReal.rawdata[1] := rawValue[0];
+ModbusReal.rawdata[0] := rawValue[1];
+
+_ConvertModbusToReal	:= ModbusReal.value;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_ConvertModbusToUDint" Id="{514c3c02-cc82-4630-acad-6d77f5a29f01}" FolderPath="Conversion\">
+      <Declaration><![CDATA[METHOD PRIVATE _ConvertModbusToUDint : UDINT
+VAR_INPUT
+	rawValue		: ARRAY[0..1] OF WORD;
+END_VAR
+VAR
+	ModbusDint					: ModbusDint;
+END_VAR
+	]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Swap word order
+ModbusDint.rawdata[1] := rawValue[0];
+ModbusDint.rawdata[0] := rawValue[1];
+
+_ConvertModbusToUDint	:= ModbusDint.value;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_ConvertRealToModbus" Id="{77aa6764-942c-43a9-8860-4e5a535203a5}" FolderPath="Conversion\">
+      <Declaration><![CDATA[METHOD PRIVATE _ConvertRealToModbus : ARRAY[0..1] OF WORD
+VAR_INPUT
+	convertedValue				: REAL;
+END_VAR
+VAR
+	ModbusReal					: ModbusReal;
+	tempOut						: ARRAY[0..1] OF WORD;
+END_VAR
+	]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ModbusReal.value		:= convertedValue;
+
+tempout[0]			:= ModbusReal.rawdata[1];
+tempout[1]			:= ModbusReal.rawdata[0];
+
+_ConvertRealToModbus		:= tempout;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_ConvertUdintToModbus" Id="{27c15cf2-0fb4-4eed-8aa6-791489d86774}" FolderPath="Conversion\">
+      <Declaration><![CDATA[METHOD PRIVATE _ConvertUdintToModbus : ARRAY[0..1] OF WORD
+VAR_INPUT
+	convertedValue				: UDINT;
+END_VAR
+VAR
+	ModbusUdint					: ModbusDint;
+	tempOut						: ARRAY[0..1] OF WORD;
+END_VAR
+	]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ModbusUdint.value		:= convertedValue;
+
+tempout[0]			:= ModbusUdint.rawdata[1];
+tempout[1]			:= ModbusUdint.rawdata[0];
+
+_ConvertUdintToModbus		:= tempout;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_HandleResults" Id="{5127d09f-6539-4064-9e66-53c1a23a3b90}" FolderPath="Modbus\">
+      <Declaration><![CDATA[METHOD PRIVATE _HandleResults
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Set error flag if any command failed
+IF 	_readSerialNumberResult = e_fail OR
+	_readProcessValue1Result = e_fail OR
+	_readProcessValue2Result =  e_fail OR
+	_writeCalibrationResult = e_Fail THEN
+		Error			:= TRUE;
+END_IF
+
+// check calibration succeded
+_calibrationSucceeded 	:= _writeCalibrationResult = s_ok;
+_initialisationSucceeded	:= _readSerialNumberResult = s_ok;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_HMIUpdate" Id="{145c8142-e9ac-4fca-9d6d-ac2dc1524cbb}" FolderPath="HMI\">
+      <Declaration><![CDATA[METHOD PRIVATE _HMIUpdate
+VAR_INST
+	triggerReinit		: R_TRIG;
+	calibrationtrigger	: R_TRIG;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Update HMI outputs
+hmi.HasError			:= Error;
+hmi.SerialNumber		:= _serialNumber;
+hmi.ActualProcessValue1	:= _processValue1;
+hmi.ActualProcessValue2	:= _processValue2;
+hmi.Initialized			:= _initialisationSucceeded;
+hmi.CalibrationSucceded	:= _calibrationSucceeded;
+
+// Process HMI inputs
+_updateTime				:= Param.UpdateTime;
+
+// Trigger reinitialization on rising edge
+triggerReinit(clk		:= hmi.CmdReinitialize);
+_reinitialize			:= triggerReinit.Q;
+
+// Trigger calibration on rising edge
+calibrationtrigger(clk	:= hmi.CmdCalibrate);
+_calibrate				:= calibrationtrigger.Q;
+_calibrationValue 		:= hmi.CalibrationValue;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="_Initialize" Id="{805540e5-8ac5-4d31-9f0d-2132d310facc}" FolderPath="Initialisation\">
+      <Declaration><![CDATA[METHOD PRIVATE _Initialize : BOOL]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Configure all Modbus commands
+_readSerialNumber.UnitID		:= Param.MBSAdress;
+_readSerialNumber.pMemoryAddr	:= ADR(_rawValueSerialNumber);
+_readSerialNumber.cbLength		:= SIZEOF(_rawValueSerialNumber);
+_readSerialNumber.Result 		:= ADR(_readSerialNumberResult);
+
+_readProcessValue1.UnitID		:= Param.MBSAdress;
+_readProcessValue1.pMemoryAddr	:= ADR(_rawValueProcessValue1);
+_readProcessValue1.cbLength		:= SIZEOF(_rawValueProcessValue1);
+_readProcessValue1.Result 		:= ADR(_readProcessValue1Result);
+
+_readProcessValue2.UnitID		:= Param.MBSAdress;
+_readProcessValue2.pMemoryAddr	:= ADR(_rawValueProcessValue2);
+_readProcessValue2.cbLength		:= SIZEOF(_rawValueProcessValue2);
+_readProcessValue2.Result  		:= ADR(_readProcessValue2Result);
+
+_writeCalibration.UnitID		:= Param.MBSAdress;
+_writeCalibration.pMemoryAddr	:= ADR(_rawValueCalibration);
+_writeCalibration.cbLength		:= SIZEOF(_rawValueCalibration);
+_writeCalibration.Result  		:= ADR(_writeCalibrationResult);
+
+// Read serial number once on initialization
+ModbusHandler.AddToBuffer(_readSerialNumber);
+Error				:= FALSE;
+_Initialize			:= TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
