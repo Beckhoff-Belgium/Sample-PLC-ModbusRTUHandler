@@ -23,7 +23,7 @@
 *.plcproj.orig
 *.tpy
 # include the licenses that are part of the project archive
-# *.tclrs 
+*.tclrs
 
 # Create an exception for libraries that are not included in the standard PLC library repository
 # cannot be installed by a TwinCAT function or cannot be downloaded from the Internet!
@@ -32,6 +32,7 @@
 !**/Compiled Library/*
 
 *.compileinfo
+*.asm
 *.core
 LineIDs.dbg
 LineIDs.dbg.bak
@@ -50,11 +51,17 @@ LineIDs.dbg.bak
 *.tsproj.bak
 *.tsproj.b?k
 *.tsproj.orig
+*.tspproj.bak
 *.xti.bak
-*.xti.orig
-*.xtv.bak
 *.xti.bk?
+*.xti.orig
+*.xtv
+*.xtv.bak
+*.xtv.bk?
+*.xt?.bk?
+*.xt?.orig
 *.project.~u
+*.vsm
 
 # Multiuser specific
 **/.TcGit/
