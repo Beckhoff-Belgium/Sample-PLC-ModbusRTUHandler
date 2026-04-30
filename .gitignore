@@ -46,7 +46,7 @@ LineIDs.dbg.bak
 !**/TMC/*
 !ExternalTypes.tmc
 
- TwinCAT3 project files
+# TwinCAT3 project files
 *.tsproj.bak
 *.tsproj.b?k
 *.tsproj.orig
@@ -92,8 +92,6 @@ backup_*.Server/
 claude_debug.log
 .anthropic/
 # === Security & Secrets ===
-.env
-.env.local
 .env.*.local
 *.pem
 *.key
@@ -101,15 +99,7 @@ secrets.json
 # === System Files ===
 .DS_Store
 Thumbs.db
-*.tmp
-*.log
-# === Dependencies & Build Artifacts ===
-node_modules/
-dist/
-build/
-.cache/
 # === IDEs ===
-.vscode/
 .idea/
 *.swp
 
@@ -218,7 +208,7 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
-*.~u 
+*.~u
 
 # Chutzpah Test files
 _Chutzpah*
