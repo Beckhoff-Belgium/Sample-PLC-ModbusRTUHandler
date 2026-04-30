@@ -1,28 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
-      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Program\\BG_Communication.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
-      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Program\\BG_Communication.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler.TcPOU@AddToBuffer||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
-      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler.TcPOU@AddToBuffer||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_1.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
-      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_1.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Program\\MAIN.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
-      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Program\\MAIN.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -30,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -55,61 +34,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BG_Communication",
-              "DocumentMoniker": "D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Program\\BG_Communication.TcPOU",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Program\\BG_Communication.TcPOU",
-              "ToolTip": "BG_Communication [ModbusRTUHandler.PLC]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-30T05:28:33.664Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ModbusHandler_1",
-              "DocumentMoniker": "D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_1.TcPOU",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_1.TcPOU",
-              "ToolTip": "ModbusHandler_1 [ModbusRTUHandler.PLC]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-30T05:25:03.718Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ModbusHandler.AddToBuffer",
-              "DocumentMoniker": "D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler.TcPOU@AddToBuffer",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler.TcPOU@AddToBuffer",
-              "ToolTip": "AddToBuffer [ModbusRTUHandler.PLC.ModbusHandler]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-29T12:53:48.27Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ModbusHandler",
-              "DocumentMoniker": "D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler.TcPOU",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler.TcPOU",
-              "ToolTip": "ModbusHandler [ModbusRTUHandler.PLC]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-29T12:53:22.588Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MAIN",
-              "DocumentMoniker": "D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\Program\\MAIN.TcPOU",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Program\\MAIN.TcPOU",
-              "ToolTip": "MAIN [ModbusRTUHandler.PLC]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-29T12:09:41.809Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
