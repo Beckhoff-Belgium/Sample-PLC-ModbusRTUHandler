@@ -43,6 +43,12 @@ _ModuleInstall/
 _Deployment/
 _Repository/
 
+# VS Shell project specific files and folders
+**/.vs/
+*.~u
+*.project.~u
+*.suo
+
 ### TwinCAT3.OpenFrameworks Stack ###
 OpenFrameworks.gitignore
 
