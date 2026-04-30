@@ -52,7 +52,7 @@
 			</Properties>
 		</DataType>
 	</DataTypes>
-	<Instance TmcHash="{83AB3C14-6973-4C87-686D-D5DE4206DB2D}">
+	<Instance TmcHash="{DBC8E5C4-98F3-2238-CE04-CB2E49334DAB}">
 		<Vars VarGrpType="1">
 			<Name>BGComm Inputs</Name>
 			<Var>

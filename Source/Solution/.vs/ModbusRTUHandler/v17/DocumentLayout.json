@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\PLC.plcproj@Library Manager||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
+      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\PLC.plcproj@Library Manager||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,6 +43,17 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{94c070b9-db0b-4415-9311-bac4eef266f5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Library Manager",
+              "DocumentMoniker": "D:\\GIT Babe_internal\\Sample-PLC-ModbusRTUHandler\\Source\\Solution\\ModbusRTUHandler\\PLC\\PLC.plcproj@Library Manager",
+              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\PLC.plcproj@Library Manager",
+              "ToolTip": "References [ModbusRTUHandler.PLC]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-30T10:41:09.3Z",
+              "EditorCaption": ""
             }
           ]
         }
