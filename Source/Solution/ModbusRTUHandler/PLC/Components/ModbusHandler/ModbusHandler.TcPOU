@@ -20,6 +20,7 @@ VAR
 	_bufferHandler						: Tc3_AnyBuffer.FifoBuffer(_buffer,TRUE,FALSE);
 	_buffer								: Tc3_AnyBuffer.AnyBuffer(_arBuffer,0,param.MAXMODBUSBUFFER,FALSE);
 	_arBuffer							: ARRAY[0..MAXMODBUSBUFFER] OF ST_ModbusCommand;
+	_bufferLock							: bool;
 	//_currentState						: (WAITING, EXECUTE, COOLDOWN, ERROR);
 END_VAR
 VAR CONSTANT
@@ -30,11 +31,13 @@ END_VAR]]></Declaration>
       <ST><![CDATA[(*----------------------------------------------------------------------
 Wait for a new bufferd command to process
 -----------------------------------------------------------------------*)
-	// Check for queued commands	
-	IF NOT _bufferHandler.isEmpty 	AND NOT Busy	THEN
-		Error := FALSE;
-		ErrorId	:= 0;
-		Busy									:= _bufferHandler.Pop(_commandToProcess);;
+	// Check for queued commands
+	IF NOT Busy AND NOT _bufferLock THEN
+		IF NOT _bufferHandler.isEmpty THEN
+			Error := FALSE;
+			ErrorId	:= 0;
+			Busy								:= _bufferHandler.Pop(_commandToProcess);
+		END_IF
 	END_IF
 		
 	(*----------------------------------------------------------------------
@@ -105,10 +108,36 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[// Set status to pending and add to ringbuffer
-MEMCPY(destAddr:= command.Result,srcAddr:=ADR(PENDING_RESULT),n:=SIZEOF(PENDING_RESULT));
-_bufferHandler.Push(command);
-AddToBuffer := s_ok;]]></ST>
+IF Tc2_System.TestAndSet(_bufferLock) THEN
+	MEMCPY(destAddr:= command.Result,srcAddr:=ADR(PENDING_RESULT),n:=SIZEOF(PENDING_RESULT));
+	_bufferHandler.Push(command);
+	
+	AddToBuffer := s_ok;
+	_bufferLock:=FALSE;
+ELSE
+	AddToBuffer := e_fail;
+END_IF]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Prop" Id="{739a9ef8-a85a-43a3-a643-9a821f006e5a}">
+      <Declaration><![CDATA[{attribute 'monitorring := 'call'}
+PROPERTY Prop : bool]]></Declaration>
+      <Get Name="Get" Id="{ee2fc04d-e202-442d-940c-152cffc630c3}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{c1118652-14f1-43e4-a587-58d762f57e96}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
   </POU>
 </TcPlcObject>
