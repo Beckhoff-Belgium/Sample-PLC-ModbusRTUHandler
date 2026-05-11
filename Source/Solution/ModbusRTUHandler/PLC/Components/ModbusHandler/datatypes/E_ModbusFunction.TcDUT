@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
   <DUT Name="E_ModbusFunction" Id="{dba485a9-1f3c-47c7-86eb-e195721bbf8a}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 {attribute 'strict'}

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
+<TcPlcObject Version="1.1.0.1">
   <Task Name="BGComm" Id="{691e1860-2951-46b5-8d93-1f11c1beb528}">
     <!--CycleTime in micro seconds.-->
     <CycleTime>1000</CycleTime>

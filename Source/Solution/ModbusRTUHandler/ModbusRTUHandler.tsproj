@@ -12,7 +12,9 @@
 			</Tasks>
 		</System>
 		<Plc>
-			<Project File="PLC.xti"/>
+			<Project GUID="{9B39D00A-93B0-4651-B842-64B7DE0CDE98}" Name="PLC" PrjFilePath="PLC\PLC.plcproj" TmcFilePath="PLC\PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+				<Instance File="PLC Instance.xti"/>
+			</Project>
 		</Plc>
 		<Io>
 			<Device File="Device 1 (EtherCAT).xti" Id="1"/>
