@@ -175,7 +175,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_ModbusTimeout		:=_ModbusTimeout;]]></ST>
+          <ST><![CDATA[_ModbusTimeout		:=ModbusTimeout;]]></ST>
         </Implementation>
       </Set>
     </Property>
