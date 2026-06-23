@@ -9,7 +9,7 @@
     <WriteProductVersion>false</WriteProductVersion>
     <GenerateTpy>false</GenerateTpy>
     <Name>PLC</Name>
-    <ProgramVersion>3.1.4026.22</ProgramVersion>
+    <ProgramVersion>3.1.4026.24</ProgramVersion>
     <Application>{b66b2695-f888-4c02-9d6e-2d4593786f38}</Application>
     <TypeSystem>{a8623ee3-2745-464e-acd2-96a109edffc1}</TypeSystem>
     <Implicit_Task_Info>{432659db-a08e-4ce0-841f-d12846bef52e}</Implicit_Task_Info>
@@ -43,10 +43,16 @@
     <Compile Include="Components\ModbusHandler\datatypes\ST_ModbusCommand.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Components\ModbusHandler\ModbusHandler.TcPOU">
+    <Compile Include="Components\ModbusHandler\I_ModbusHandler.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Components\ModbusHandler\ModbusHandler_1.TcPOU">
+    <Compile Include="Components\ModbusHandler\ModbusHandler_KL6x22B.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\ModbusHandler\ModbusHandler_KL6x5B.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\ModbusHandler\ModbusHandler_PcCOM.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
@@ -115,6 +121,12 @@
         <o>
           <v n="Name">"{29BD8D0C-3586-4548-BB48-497B9A01693F}"</v>
           <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
+            <v>Metrics</v>
+            <o>
+              <v n="Name">"Metrics"</v>
+              <d n="SubKeys" t="Hashtable" />
+              <d n="Values" t="Hashtable" />
+            </o>
             <v>NamingConventions</v>
             <o>
               <v n="Name">"NamingConventions"</v>

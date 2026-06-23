@@ -7,15 +7,12 @@ FUNCTION_BLOCK ModbusDevice
 VAR_INPUT
 	reset						: bool;
 	Param						: ST_ModbusDeviceParam;
-	ModbusHandler				: I_ModbusHandler;
+	ModbusHandler				: REFERENCE TO ModbusHandler;
 END_VAR
 VAR_OUTPUT
 	Error						: BOOL;
 	PVProcessValue1				: REAL;
 	PVProcessValue2				: REAL;
-END_VAR
-VAR_IN_OUT
-	
 END_VAR
 VAR
 
@@ -60,7 +57,7 @@ VAR_STAT
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF ModbusHandler = 0 THEN
+      <ST><![CDATA[IF NOT __ISVALIDREF(ModbusHandler) THEN
 	IF NOT _setAdsError THEN
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_ERROR, msgFmtStr := 'modbushandler not configured, device will not run: %s', strArg :=_componentPath);
 		_setAdsError := TRUE;
@@ -104,9 +101,8 @@ PVProcessValue2	:= _processValue2;
 ]]></ST>
     </Implementation>
     <Folder Name="Conversion" Id="{38767e73-2ce7-4213-b6f2-d700261d0c0e}" />
-    <Folder Name="Initialisation" Id="{7f0e9935-f97d-4b05-8bc7-eb2d611ecc11}">
-      <Folder Name="HMI" Id="{aaed12c6-3953-4f66-9e1a-b6a162d65040}" />
-    </Folder>
+    <Folder Name="HMI" Id="{aaed12c6-3953-4f66-9e1a-b6a162d65040}" />
+    <Folder Name="Initialisation" Id="{7f0e9935-f97d-4b05-8bc7-eb2d611ecc11}" />
     <Folder Name="Modbus" Id="{bdd31a01-0ac9-430b-8933-89d40cc23cbf}" />
     <Method Name="_ConvertModbusToReal" Id="{1c157e7d-2f71-42e6-a7be-6e9ee8adc99c}" FolderPath="Conversion\">
       <Declaration><![CDATA[METHOD PRIVATE _ConvertModbusToReal : REAL
@@ -197,7 +193,7 @@ _calibrationSucceeded 	:= _writeCalibrationResult = s_ok;
 _initialisationSucceeded	:= _readSerialNumberResult = s_ok;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="_HMIUpdate" Id="{145c8142-e9ac-4fca-9d6d-ac2dc1524cbb}" FolderPath="Initialisation\HMI\">
+    <Method Name="_HMIUpdate" Id="{145c8142-e9ac-4fca-9d6d-ac2dc1524cbb}" FolderPath="HMI\">
       <Declaration><![CDATA[METHOD PRIVATE _HMIUpdate
 VAR_INST
 	triggerReinit		: R_TRIG;

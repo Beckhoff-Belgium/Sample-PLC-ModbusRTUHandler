@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="ModbusHandler_KL6x5B" Id="{fcd626c8-e28b-4819-82a4-61a7ed7c4d71}" SpecialFunc="None">
+    <Declaration><![CDATA[// Queue-based Modbus RTU command handler with ringbuffer
+{attribute 'no_explicit_call' := 'do not call this POU directly'}
+FUNCTION_BLOCK ModbusHandler_KL6x5B implements I_ModbusHandler
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	_Terminal							: Tc2_ModbusRTU.ModbusRtuMasterV2_KL6x5B;
+END_VAR
+VAR
+	_Busy								: BOOL;
+	_Error								: BOOL;
+	_ErrorId								: MODBUS_ERRORS;
+	_ModbusTimeout						: TIME := T#500MS;	
+	_commandToProcess					: ST_ModbusCommand;
+	_bufferHandler						: Tc3_AnyBuffer.FifoBuffer(_buffer,TRUE,FALSE);
+	_buffer								: Tc3_AnyBuffer.AnyBuffer(_arBuffer,0,param.MAXMODBUSBUFFER,FALSE);
+	_arBuffer							: ARRAY[0..MAXMODBUSBUFFER] OF ST_ModbusCommand;
+	_bufferLock							: BOOL;
+END_VAR
+VAR CONSTANT
+	ERROR_RESULT						: hresult := e_fail;
+	OK_RESULT							: hresult := s_ok;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="AddToBuffer" Id="{b9ed1991-f7d2-4089-b58b-4dc8886798f0}">
+      <Declaration><![CDATA[METHOD AddToBuffer : Hresult
+VAR_INPUT
+	command			: ST_ModbusCommand;
+END_VAR
+VAR CONSTANT
+	PENDING_RESULT		: hresult := S_Pending;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Set status to pending and add to ringbuffer
+IF Tc2_System.TestAndSet(_bufferLock) THEN
+	MEMCPY(destAddr:= command.Result,srcAddr:=ADR(PENDING_RESULT),n:=SIZEOF(PENDING_RESULT));
+	_bufferHandler.Push(command);
+	
+	AddToBuffer := s_ok;
+	_bufferLock:=FALSE;
+ELSE
+	AddToBuffer := e_fail;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Busy" Id="{7f274660-840c-4e70-b715-6bfbccf6c340}">
+      <Declaration><![CDATA[PROPERTY Busy : bool]]></Declaration>
+      <Get Name="Get" Id="{6dc3e18f-732e-4e2e-80a8-30920e9f18e1}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Busy			:= _Busy;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Cyclic" Id="{46e4b03b-d218-4ece-9084-e77cf8b61091}">
+      <Declaration><![CDATA[METHOD Cyclic ]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(*----------------------------------------------------------------------
+Wait for a new bufferd command to process
+-----------------------------------------------------------------------*)
+	// Check for queued commands
+	IF NOT _Busy AND NOT _bufferLock THEN
+		IF NOT _bufferHandler.isEmpty THEN
+			_Error := FALSE;
+			_ErrorId	:= 0;
+			_Busy								:= _bufferHandler.Pop(_commandToProcess);
+		END_IF
+	END_IF
+		
+	(*----------------------------------------------------------------------
+	Process command
+	-----------------------------------------------------------------------*)
+	IF _Busy AND _commandToProcess.Result <> 0 THEN
+			// Copy parameters to modbus FB
+			_Terminal.UnitID    		:= _commandToProcess.UnitID;
+			_Terminal.Quantity  		:= _commandToProcess.Quantity;
+			_Terminal.MBAddr    		:= _commandToProcess.MBAddr;
+			_Terminal.cbLength		:= _commandToProcess.cbLength;
+			_Terminal.Timeout			:= _ModbusTimeout;
+			_Terminal.pMemoryAddr 	:= _commandToProcess.pMemoryAddr;
+
+		CASE _commandToProcess.ModbusFunction OF
+			E_ModbusFunction.ReadCoils:
+				_Terminal.readcoils(	execute := TRUE,
+									);
+			E_ModbusFunction.ReadInputStatus:
+				_Terminal.ReadInputStatus(execute := TRUE,
+									);
+			E_ModbusFunction.ReadRegs	:
+				_Terminal.ReadRegs(execute := TRUE,
+									);
+			E_ModbusFunction.ReadInputRegs :
+				_Terminal.ReadInputRegs(execute := TRUE,
+									);
+			E_ModbusFunction.WriteSingleCoil:
+				_Terminal.WriteSingleCoil(execute := TRUE);
+			E_ModbusFunction.WriteSingleRegister:
+				_Terminal.WriteSingleRegister(execute := TRUE);
+			E_ModbusFunction.WriteMultipleCoils	:
+				_Terminal.WriteMultipleCoils(execute := TRUE);
+			E_ModbusFunction.WriteRegs		:
+				_Terminal.WriteRegs(execute := TRUE);
+			E_ModbusFunction.Diagnostics		:
+				_Terminal.Diagnostics(execute := TRUE);
+
+		END_CASE
+			// Wait for completion
+			IF NOT _Terminal.BUSY THEN
+				
+				_Terminal.readcoils(	execute := TRUE,);
+				_Terminal.ReadInputStatus(execute := TRUE,);
+				_Terminal.ReadRegs(execute := TRUE,);
+				_Terminal.ReadInputRegs(execute := TRUE,);
+				_Terminal.WriteSingleCoil(execute := TRUE);
+				_Terminal.WriteSingleRegister(execute := TRUE);
+				_Terminal.WriteMultipleCoils(execute := TRUE);
+				_Terminal.WriteRegs(execute := TRUE);
+				_Terminal.Diagnostics(execute := TRUE);
+				
+				_Busy									:= FALSE;
+				// Write result to caller's pointer
+				IF NOT _Terminal.Error THEN
+					MEMCPY(destAddr:= _commandToProcess.Result,srcAddr:=ADR(OK_RESULT),n:=SIZEOF(OK_RESULT));
+				ELSE
+					MEMCPY(destAddr:= _commandToProcess.Result,srcAddr:=ADR(ERROR_RESULT),n:=SIZEOF(ERROR_RESULT));
+					//ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_ERROR, msgFmtStr := 'modbus command Failed', strArg :='');
+					_Error := TRUE;
+					_ErrorId	:= _Terminal.ErrorId;
+				END_IF
+			END_IF
+		ELSIF _Busy AND _commandToProcess.Result <> 0 THEN
+			//ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_ERROR, msgFmtStr := 'bad command receieved', strArg :='');
+			_Busy		:= FALSE;
+		END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Error" Id="{eb99044b-e5ad-4390-a73c-c1eb308a4f2f}">
+      <Declaration><![CDATA[PROPERTY Error : bool]]></Declaration>
+      <Get Name="Get" Id="{7f32ed38-5521-4d8a-8713-6692fc526574}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Error		:= _Error;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Errorid" Id="{c8bf4f91-456c-4b48-8ca3-d426f873aecc}">
+      <Declaration><![CDATA[PROPERTY Errorid : MODBUS_ERRORS]]></Declaration>
+      <Get Name="Get" Id="{f97dc9ea-28a8-4ae7-8490-4c573e10be10}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Errorid		:= _ErrorId;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="ModbusTimeout" Id="{7aa8327f-900d-4572-a2b2-dff6ac59b257}">
+      <Declaration><![CDATA[PROPERTY ModbusTimeout : Time]]></Declaration>
+      <Set Name="Set" Id="{4c189d44-4363-49ac-87d2-843f8fa6b572}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_ModbusTimeout		:=_ModbusTimeout;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

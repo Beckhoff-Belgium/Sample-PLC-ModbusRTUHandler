@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_ModbusHandler" Id="{aa6f6053-efda-405f-92d6-fd5c345d3897}">
+    <Declaration><![CDATA[INTERFACE I_ModbusHandler
+]]></Declaration>
+    <Method Name="AddToBuffer" Id="{95ae5886-8e41-498b-b84d-6263bb33be2d}">
+      <Declaration><![CDATA[METHOD AddToBuffer : Hresult
+VAR_INPUT
+	command			: ST_ModbusCommand;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

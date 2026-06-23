@@ -3,13 +3,12 @@
   <POU Name="BG_Communication" Id="{3ea87593-e70b-417a-8b18-4b5cf025a577}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM BG_Communication
 VAR
-	modbushandler			: ModbusHandler;
-	holdback: BOOL;
+	modbushandler			: ModbusHandler_KL6x22B;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-modbushandler();
+modbushandler.Cyclic();
 ]]></ST>
     </Implementation>
   </POU>
