@@ -3,12 +3,40 @@
   "WorkspaceRootPath": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\I_ModbusHandler.TcIO||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
-      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\I_ModbusHandler.TcIO||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
       "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x5B.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
+      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x5B.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_PcCOM.TcPOU@Cyclic||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
+      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_PcCOM.TcPOU@Cyclic||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_PcCOM.TcPOU@ModbusTimeout.Set||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
+      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_PcCOM.TcPOU@ModbusTimeout.Set||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x5B.TcPOU@ModbusTimeout.Set||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
+      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x5B.TcPOU@ModbusTimeout.Set||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU@ModbusTimeout.Set||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
+      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU@ModbusTimeout.Set||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU@ModbusTimeout||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
+      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU@ModbusTimeout||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU@AddToBuffer||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
+      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU@AddToBuffer||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\I_ModbusHandler.TcIO||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
+      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\I_ModbusHandler.TcIO||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
@@ -27,16 +55,8 @@
       "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_PcCOM.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x5B.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
-      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x5B.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Program\\MAIN.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
       "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Program\\MAIN.TcPOU||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU@AddToBuffer||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
-      "RelativeMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|solutionrelative:ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU@AddToBuffer||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9B39D00A-93B0-4651-B842-64B7DE0CDE98}|ModbusRTUHandler\\PLC\\PLC.plcproj|C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\I_ModbusHandler.TcIO@AddToBuffer||{CFF47BB1-5559-4BDE-A2AF-06B30BC64F6C}",
@@ -54,11 +74,44 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
+              "Title": "ModbusHandler_PcCOM.Cyclic",
+              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_PcCOM.TcPOU@Cyclic",
+              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_PcCOM.TcPOU@Cyclic",
+              "ToolTip": "Cyclic [ModbusRTUHandler.PLC.ModbusHandler_PcCOM]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-24T06:23:31.752Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ModbusHandler_PcCOM.ModbusTimeout.Set",
+              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_PcCOM.TcPOU@ModbusTimeout.Set",
+              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_PcCOM.TcPOU@ModbusTimeout.Set",
+              "ToolTip": "Set [ModbusRTUHandler.PLC.ModbusHandler_PcCOM.ModbusTimeout]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-23T14:04:48.615Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ModbusHandler_KL6x22B.ModbusTimeout",
+              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU@ModbusTimeout",
+              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU@ModbusTimeout",
+              "ToolTip": "ModbusTimeout [ModbusRTUHandler.PLC.ModbusHandler_KL6x22B]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-23T14:04:37.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "ModbusDevice._ConvertUdintToModbus",
               "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_ConvertUdintToModbus",
               "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_ConvertUdintToModbus",
@@ -69,95 +122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ModbusDevice._ConvertModbusToUDint",
-              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_ConvertModbusToUDint",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_ConvertModbusToUDint",
-              "ToolTip": "_ConvertModbusToUDint [ModbusRTUHandler.PLC.ModbusDevice.Conversion]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-06-23T13:04:53.287Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MAIN",
-              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Program\\MAIN.TcPOU",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Program\\MAIN.TcPOU",
-              "ToolTip": "MAIN [ModbusRTUHandler.PLC]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-06-23T13:00:22.68Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ModbusHandler_PcCOM",
-              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_PcCOM.TcPOU",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_PcCOM.TcPOU",
-              "ToolTip": "ModbusHandler_PcCOM [ModbusRTUHandler.PLC]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-06-23T13:00:07.606Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ModbusHandler_KL6x22B",
-              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU",
-              "ToolTip": "ModbusHandler_KL6x22B [ModbusRTUHandler.PLC]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-06-23T12:59:55.084Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ModbusDevice",
-              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU",
-              "ToolTip": "ModbusDevice [ModbusRTUHandler.PLC]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-06-23T12:59:09.471Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "I_ModbusHandler",
-              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\I_ModbusHandler.TcIO",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\I_ModbusHandler.TcIO",
-              "ToolTip": "I_ModbusHandler [ModbusRTUHandler.PLC]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-06-23T12:59:19.679Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ModbusHandler_KL6x22B.AddToBuffer",
-              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU@AddToBuffer",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU@AddToBuffer",
-              "ToolTip": "AddToBuffer [ModbusRTUHandler.PLC.ModbusHandler_KL6x22B]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-06-23T13:03:08.23Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "I_ModbusHandler.AddToBuffer",
-              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\I_ModbusHandler.TcIO@AddToBuffer",
-              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\I_ModbusHandler.TcIO@AddToBuffer",
-              "ToolTip": "AddToBuffer [ModbusRTUHandler.PLC.I_ModbusHandler]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-06-23T12:59:54.497Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "ModbusHandler_KL6x5B",
               "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x5B.TcPOU",
               "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x5B.TcPOU",
@@ -168,7 +133,117 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ModbusHandler_KL6x22B",
+              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU",
+              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU",
+              "ToolTip": "ModbusHandler_KL6x22B [ModbusRTUHandler.PLC]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-23T12:59:55.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ModbusHandler_KL6x22B.ModbusTimeout.Set",
+              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU@ModbusTimeout.Set",
+              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU@ModbusTimeout.Set",
+              "ToolTip": "Set [ModbusRTUHandler.PLC.ModbusHandler_KL6x22B.ModbusTimeout]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-23T14:04:39.079Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ModbusHandler_KL6x5B.ModbusTimeout.Set",
+              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x5B.TcPOU@ModbusTimeout.Set",
+              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x5B.TcPOU@ModbusTimeout.Set",
+              "ToolTip": "Set [ModbusRTUHandler.PLC.ModbusHandler_KL6x5B.ModbusTimeout]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-23T14:04:44.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 10,
+              "Title": "ModbusDevice._ConvertModbusToUDint",
+              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_ConvertModbusToUDint",
+              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU@_ConvertModbusToUDint",
+              "ToolTip": "_ConvertModbusToUDint [ModbusRTUHandler.PLC.ModbusDevice.Conversion]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-23T13:04:53.287Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ModbusHandler_PcCOM",
+              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_PcCOM.TcPOU",
+              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_PcCOM.TcPOU",
+              "ToolTip": "ModbusHandler_PcCOM [ModbusRTUHandler.PLC]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-23T13:00:07.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ModbusDevice",
+              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU",
+              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusDeviceSample\\ModbusDevice.TcPOU",
+              "ToolTip": "ModbusDevice [ModbusRTUHandler.PLC]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-23T12:59:09.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "I_ModbusHandler",
+              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\I_ModbusHandler.TcIO",
+              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\I_ModbusHandler.TcIO",
+              "ToolTip": "I_ModbusHandler [ModbusRTUHandler.PLC]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-23T12:59:19.679Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ModbusHandler_KL6x22B.AddToBuffer",
+              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU@AddToBuffer",
+              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\ModbusHandler_KL6x22B.TcPOU@AddToBuffer",
+              "ToolTip": "AddToBuffer [ModbusRTUHandler.PLC.ModbusHandler_KL6x22B]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-23T13:03:08.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MAIN",
+              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Program\\MAIN.TcPOU",
+              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Program\\MAIN.TcPOU",
+              "ToolTip": "MAIN [ModbusRTUHandler.PLC]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-23T13:00:22.68Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "I_ModbusHandler.AddToBuffer",
+              "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\I_ModbusHandler.TcIO@AddToBuffer",
+              "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Components\\ModbusHandler\\I_ModbusHandler.TcIO@AddToBuffer",
+              "ToolTip": "AddToBuffer [ModbusRTUHandler.PLC.I_ModbusHandler]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-06-23T12:59:54.497Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "BG_Communication",
               "DocumentMoniker": "C:\\_Data\\Projects\\Babe_internal\\Sample-PLC-ModbusRTUHandle\\Source\\Solution\\ModbusRTUHandler\\PLC\\Program\\BG_Communication.TcPOU",
               "RelativeDocumentMoniker": "ModbusRTUHandler\\PLC\\Program\\BG_Communication.TcPOU",

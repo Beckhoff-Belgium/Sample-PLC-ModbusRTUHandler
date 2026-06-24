@@ -62,7 +62,7 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="Cyclic" Id="{46e4b03b-d218-4ece-9084-e77cf8b61091}">
+    <Method Name="Cyclic" Id="{2e65cd04-abcc-4859-b906-80f75ae44395}">
       <Declaration><![CDATA[METHOD Cyclic ]]></Declaration>
       <Implementation>
         <ST><![CDATA[(*----------------------------------------------------------------------
@@ -117,15 +117,15 @@ Wait for a new bufferd command to process
 			// Wait for completion
 			IF NOT _Terminal.BUSY THEN
 				
-				_Terminal.readcoils(	execute := TRUE,);
-				_Terminal.ReadInputStatus(execute := TRUE,);
-				_Terminal.ReadRegs(execute := TRUE,);
-				_Terminal.ReadInputRegs(execute := TRUE,);
-				_Terminal.WriteSingleCoil(execute := TRUE);
-				_Terminal.WriteSingleRegister(execute := TRUE);
-				_Terminal.WriteMultipleCoils(execute := TRUE);
-				_Terminal.WriteRegs(execute := TRUE);
-				_Terminal.Diagnostics(execute := TRUE);
+				_Terminal.readcoils(	execute := FALSE,);
+				_Terminal.ReadInputStatus(execute := FALSE,);
+				_Terminal.ReadRegs(execute := FALSE,);
+				_Terminal.ReadInputRegs(execute := FALSE,);
+				_Terminal.WriteSingleCoil(execute := FALSE);
+				_Terminal.WriteSingleRegister(execute := FALSE);
+				_Terminal.WriteMultipleCoils(execute := FALSE);
+				_Terminal.WriteRegs(execute := FALSE
+				_Terminal.Diagnostics(execute := false);
 				
 				_Busy									:= FALSE;
 				// Write result to caller's pointer
@@ -175,7 +175,7 @@ END_VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[_ModbusTimeout		:=_ModbusTimeout;]]></ST>
+          <ST><![CDATA[_ModbusTimeout		:=ModbusTimeout;]]></ST>
         </Implementation>
       </Set>
     </Property>

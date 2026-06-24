@@ -117,15 +117,15 @@ Wait for a new bufferd command to process
 			// Wait for completion
 			IF NOT _Terminal.BUSY THEN
 				
-				_Terminal.readcoils(	execute := TRUE,);
-				_Terminal.ReadInputStatus(execute := TRUE,);
-				_Terminal.ReadRegs(execute := TRUE,);
-				_Terminal.ReadInputRegs(execute := TRUE,);
-				_Terminal.WriteSingleCoil(execute := TRUE);
-				_Terminal.WriteSingleRegister(execute := TRUE);
-				_Terminal.WriteMultipleCoils(execute := TRUE);
-				_Terminal.WriteRegs(execute := TRUE);
-				_Terminal.Diagnostics(execute := TRUE);
+				_Terminal.readcoils(	execute := FALSE,);
+				_Terminal.ReadInputStatus(execute := FALSE,);
+				_Terminal.ReadRegs(execute := FALSE,);
+				_Terminal.ReadInputRegs(execute := FALSE,);
+				_Terminal.WriteSingleCoil(execute := FALSE);
+				_Terminal.WriteSingleRegister(execute := FALSE);
+				_Terminal.WriteMultipleCoils(execute := FALSE);
+				_Terminal.WriteRegs(execute := FALSE
+				_Terminal.Diagnostics(execute := false);
 				
 				_Busy									:= FALSE;
 				// Write result to caller's pointer
